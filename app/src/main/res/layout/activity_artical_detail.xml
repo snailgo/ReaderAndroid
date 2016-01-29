@@ -1,0 +1,12 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/artical_detail_container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".ArticalDetailActivity" tools:ignore="MergeRootFrame" >
+
+    <TextView
+        android:layout_width="124dp"
+        android:layout_height="132dp"
+        android:text="New Text"
+        android:id="@+id/textView"
+        android:layout_gravity="center" />
+</FrameLayout>
