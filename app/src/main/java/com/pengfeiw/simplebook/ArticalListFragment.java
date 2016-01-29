@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-import com.pengfeiw.simplebook.dummy.DummyContent;
+import com.pengfeiw.simplebook.library.LibraryContent;
 
 /**
  * A list fragment representing a list of Articals. This fragment
@@ -72,11 +72,11 @@ public class ArticalListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+        setListAdapter(new ArrayAdapter<LibraryContent.Artical>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                DummyContent.ITEMS));
+                LibraryContent.ITEMS));
     }
 
     @Override
@@ -116,7 +116,7 @@ public class ArticalListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(LibraryContent.ITEMS.get(position).id);
     }
 
     @Override

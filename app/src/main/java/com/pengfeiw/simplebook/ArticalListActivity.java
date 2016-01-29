@@ -1,12 +1,8 @@
 package com.pengfeiw.simplebook;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-
-import java.io.FileOutputStream;
 
 
 /**
@@ -53,7 +49,6 @@ public class ArticalListActivity extends FragmentActivity
                     .setActivateOnItemClick(true);
         }
 
-        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     /**
