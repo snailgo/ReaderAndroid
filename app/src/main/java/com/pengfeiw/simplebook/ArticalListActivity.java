@@ -2,7 +2,7 @@ package com.pengfeiw.simplebook;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
 
 /**
@@ -21,7 +21,7 @@ import android.support.v4.app.FragmentActivity;
  * {@link ArticalListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class ArticalListActivity extends FragmentActivity
+public class ArticalListActivity extends ActionBarActivity
         implements ArticalListFragment.Callbacks {
     private static String TAG = "ArticalListActivity";
     /**
