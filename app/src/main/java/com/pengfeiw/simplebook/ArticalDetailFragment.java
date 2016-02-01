@@ -54,7 +54,7 @@ public class ArticalDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.artical_detail)).setText(mItem.getContent());
+            ((TextView) rootView.findViewById(R.id.artical_detail)).setText(mItem.getContent(this.getActivity()));
         }
 
         return rootView;
