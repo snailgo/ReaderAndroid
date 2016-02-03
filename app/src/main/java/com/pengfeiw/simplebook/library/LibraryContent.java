@@ -1,13 +1,11 @@
 package com.pengfeiw.simplebook.library;
 
 import android.content.Context;
-import android.nfc.Tag;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.File;
+import com.google.common.io.CharStreams;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +33,7 @@ public class LibraryContent {
 
     static {
         // Add 3 sample items.
-        addItem(new Artical("1", "Artical 1", "HelloWorld.txt"));
+        addItem(new Artical("1", "Some One Like You -- Adele", "SomeOneLikeYou.txt"));
         addItem(new Artical("2", "Artical 2", "This is artical 2"));
         addItem(new Artical("3", "Artical 3", "This is artical 3"));
     }
@@ -67,23 +65,25 @@ public class LibraryContent {
         }
 
         public String getContent(Context context) {
-            //TODO: read file content and display.
             Log.i(TAG, context.getFilesDir().getAbsolutePath() + "/" + fileName);
-            String firstTenLines= title + "\n";
+            String fileContent = "";
+            InputStreamReader inReader = null;
             try {
-                InputStream inStream = context.getAssets().open(fileName);
+                inReader = new InputStreamReader(context.getAssets().open(fileName));
+                fileContent = CharStreams.toString(inReader);
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inStream));
-                String line;
-                while ((line=reader.readLine())!=null) {
-                    firstTenLines += line;
-                }
-                reader.close();
-                inStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                if (inReader != null) {
+                    try {
+                        inReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            return firstTenLines;
+            return fileContent;
         }
     }
 }
