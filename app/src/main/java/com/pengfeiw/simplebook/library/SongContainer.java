@@ -34,8 +34,6 @@ public class SongContainer {
     static {
         // Add 3 sample items.
         addItem(new Song("1", "Some One Like You -- Adele", "SomeOneLikeYou.txt"));
-        addItem(new Song("2", "Song 2", "This is artical 2"));
-        addItem(new Song("3", "Song 3", "This is artical 3"));
     }
 
     private static void addItem(Song item) {
