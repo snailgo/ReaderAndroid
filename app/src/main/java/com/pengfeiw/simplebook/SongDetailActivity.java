@@ -8,20 +8,20 @@ import android.view.MenuItem;
 
 
 /**
- * An activity representing a single Artical detail screen. This
+ * An activity representing a single Song detail screen. This
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link ArticalListActivity}.
+ * in a {@link SongListActivity}.
  * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
- * more than a {@link ArticalDetailFragment}.
+ * more than a {@link SongDetailFragment}.
  */
-public class ArticalDetailActivity extends ActionBarActivity {
+public class SongDetailActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artical_detail);
+        setContentView(R.layout.activity_song_detail);
 
         // Show the Up button in the action bar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,12 +39,12 @@ public class ArticalDetailActivity extends ActionBarActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ArticalDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ArticalDetailFragment.ARG_ITEM_ID));
-            ArticalDetailFragment fragment = new ArticalDetailFragment();
+            arguments.putString(SongDetailFragment.ARG_ITEM_ID,
+                    getIntent().getStringExtra(SongDetailFragment.ARG_ITEM_ID));
+            SongDetailFragment fragment = new SongDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.artical_detail_container, fragment)
+                    .add(R.id.song_detail_container, fragment)
                     .commit();
         }
     }
@@ -59,7 +59,7 @@ public class ArticalDetailActivity extends ActionBarActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, ArticalListActivity.class));
+            navigateUpTo(new Intent(this, SongListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

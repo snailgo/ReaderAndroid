@@ -19,26 +19,26 @@ import java.util.Map;
  * <p/>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class LibraryContent {
+public class SongContainer {
 
     /**
      * An array of sample (dummy) items.
      */
-    public static List<Artical> ITEMS = new ArrayList<Artical>();
+    public static List<Song> ITEMS = new ArrayList<Song>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static Map<String, Artical> ITEM_MAP = new HashMap<String, Artical>();
+    public static Map<String, Song> ITEM_MAP = new HashMap<String, Song>();
 
     static {
         // Add 3 sample items.
-        addItem(new Artical("1", "Some One Like You -- Adele", "SomeOneLikeYou.txt"));
-        addItem(new Artical("2", "Artical 2", "This is artical 2"));
-        addItem(new Artical("3", "Artical 3", "This is artical 3"));
+        addItem(new Song("1", "Some One Like You -- Adele", "SomeOneLikeYou.txt"));
+        addItem(new Song("2", "Song 2", "This is artical 2"));
+        addItem(new Song("3", "Song 3", "This is artical 3"));
     }
 
-    private static void addItem(Artical item) {
+    private static void addItem(Song item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
@@ -46,14 +46,14 @@ public class LibraryContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class Artical {
-        private static String TAG = "Artical";
+    public static class Song {
+        private static String TAG = "Song";
 
         public String id;
         public String title;
         public String fileName;
 
-        public Artical(String id, String title, String fileName) {
+        public Song(String id, String title, String fileName) {
             this.id = id;
             this.title = title;
             this.fileName = fileName;

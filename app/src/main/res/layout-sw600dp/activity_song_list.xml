@@ -3,7 +3,7 @@
     android:layout_height="match_parent" android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp" android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal" android:orientation="horizontal"
-    android:showDividers="middle" tools:context=".ArticalListActivity">
+    android:showDividers="middle" tools:context=".SongListActivity">
 
     <!--
     This layout is a two-pane layout for the Articals
@@ -11,12 +11,12 @@
     
     -->
 
-    <fragment android:id="@+id/artical_list"
-        android:name="com.pengfeiw.simplebook.ArticalListFragment" android:layout_width="0dp"
+    <fragment android:id="@+id/song_list"
+        android:name="com.pengfeiw.simplebook.SongListFragment" android:layout_width="0dp"
         android:layout_height="match_parent" android:layout_weight="1"
         tools:layout="@android:layout/list_content" />
 
-    <FrameLayout android:id="@+id/artical_detail_container" android:layout_width="0dp"
+    <FrameLayout android:id="@+id/song_detail_container" android:layout_width="0dp"
         android:layout_height="match_parent" android:layout_weight="3" />
 
 </LinearLayout>

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">SimpleBook</string>
-    <string name="title_artical_detail">Artical Detail</string>
+    <string name="app_name">Song List</string>
+    <string name="title_song_detail">Song Detail</string>
 </resources>

@@ -2,11 +2,11 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:fillViewport="true"
-    android:id="@+id/artical_detail_scroll">
+    android:id="@+id/song_detail_scroll">
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/artical_detail"
+    android:id="@+id/song_detail"
     style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,5 +14,5 @@
     android:textSize="14dp"
     android:textIsSelectable="true"
     android:gravity="center"
-    tools:context=".ArticalDetailFragment" />
+    tools:context=".SongDetailFragment" />
 </ScrollView>
