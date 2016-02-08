@@ -65,6 +65,7 @@ public class SongContainer {
                 if (line.startsWith(songPromptString)) {
                     if (count > 0) {
                         addItem(new Song(Integer.toString(count), title, body.toString()));
+                        body.setLength(0);
                     }
                     count ++;
                     title = line.substring(songPromptString.length()).trim();
