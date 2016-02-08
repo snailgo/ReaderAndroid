@@ -9,8 +9,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".SongListActivity"
-            android:label="Change this will change main activity label." >
-            <intent-filter>
+            android:label="Main Label" >
+            <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name=".SongDetailActivity"
-            android:label="Change this will change detail activity label"
+            android:label="Sub Label"
             android:parentActivityName=".SongListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
