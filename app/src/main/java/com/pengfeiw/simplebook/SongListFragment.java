@@ -60,6 +60,8 @@ public class SongListFragment extends ListFragment {
         }
     };
 
+    private SongContainer songContainer = null;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -70,13 +72,13 @@ public class SongListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        songContainer = SongContainer.getInstance(this.getActivity().getApplicationContext());
         // TODO: replace with a real list adapter.
         setListAdapter(new ArrayAdapter<SongContainer.Song>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                SongContainer.ITEMS));
+                songContainer.getSongList()));
     }
 
     @Override
@@ -116,7 +118,7 @@ public class SongListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(SongContainer.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(songContainer.getSongList().get(position).id);
     }
 
     @Override

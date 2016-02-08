@@ -1,11 +1,12 @@
 package com.pengfeiw.simplebook.library;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.util.Log;
 
-import com.google.common.io.CharStreams;
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,20 +21,82 @@ import java.util.Map;
  * TODO: Replace all uses of this class before publishing your app.
  */
 public class SongContainer {
+    private static String TAG = "SongContainer";
+
+    //Resource for container self.
+    private static SongContainer instance=null;
+    private Context appContext = null;
+
+
+    //Resource for accessing song.
+    private static List<Song> ITEMS = new ArrayList<Song>();
+    private static Map<String, Song> ITEM_MAP = new HashMap<String, Song>();
 
     /**
-     * An array of sample (dummy) items.
+     *  Read songs from txt file. If the file is really large, this will cause some delay.
+     *  Songs in Songs.txt will be repackaged as Song object.
+     *
+     *  Song.txt uses semicolon to separate different songs.
+     *  A line start with songPromptString will be recognized as song title and the following
+     *  content will be the song body until file end or another songPromptString.
      */
-    public static List<Song> ITEMS = new ArrayList<Song>();
+    private void init() {
+        Log.i(TAG, "Initialize song container.");
+        String songPromptString = "SONG TITLE:";
+        InputStream songIn = null;
+        try {
+            songIn = appContext.getAssets().open("Songs.txt", AssetManager.ACCESS_STREAMING);
+            BufferedReader fileReader = new BufferedReader((new InputStreamReader(songIn)));
+            String line;
+            String title = "";
+            StringBuilder body = new StringBuilder();
+            int count = 0;
 
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    public static Map<String, Song> ITEM_MAP = new HashMap<String, Song>();
+            while(true) {
+                line = fileReader.readLine();
 
-    static {
-        // Add 3 sample items.
-        addItem(new Song("1", "Some One Like You -- Adele", "SomeOneLikeYou.txt"));
+                if (line == null) {
+                    if (count > 0 ) {
+                        addItem(new Song(Integer.toString(count), title, body.toString()));
+                    }
+                    break;
+                }
+
+                if (line.startsWith(songPromptString)) {
+                    if (count > 0) {
+                        addItem(new Song(Integer.toString(count), title, body.toString()));
+                    }
+                    count ++;
+                    title = line.substring(songPromptString.length()).trim();
+                    Log.i(TAG, "Start parse song: " + title);
+                    continue;
+                }
+                body.append(line).append('\n');
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (songIn != null) {
+                    songIn.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private SongContainer(Context appContext) {
+        this.appContext = appContext;
+        init();
+    }
+
+    public static SongContainer getInstance(Context appContext) {
+        if (instance == null) {
+            instance = new SongContainer(appContext);
+        }
+        return instance;
     }
 
     private static void addItem(Song item) {
@@ -41,20 +104,26 @@ public class SongContainer {
         ITEM_MAP.put(item.id, item);
     }
 
-    /**
-     * A dummy item representing a piece of content.
-     */
+    public Song getSongById(String songId) {
+        return ITEM_MAP.get(songId);
+    }
+
+    public List<Song> getSongList() {
+        return ITEMS;
+    }
+
+    // model of song.
     public static class Song {
         private static String TAG = "Song";
 
         public String id;
         public String title;
-        public String fileName;
+        public String body;
 
-        public Song(String id, String title, String fileName) {
+        public Song(String id, String title, String body) {
             this.id = id;
             this.title = title;
-            this.fileName = fileName;
+            this.body = body;
         }
 
         @Override
@@ -62,26 +131,8 @@ public class SongContainer {
             return title;
         }
 
-        public String getContent(Context context) {
-            Log.i(TAG, context.getFilesDir().getAbsolutePath() + "/" + fileName);
-            String fileContent = "";
-            InputStreamReader inReader = null;
-            try {
-                inReader = new InputStreamReader(context.getAssets().open(fileName));
-                fileContent = CharStreams.toString(inReader);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (inReader != null) {
-                    try {
-                        inReader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return fileContent;
+        public String getContent() {
+            return body;
         }
     }
 }

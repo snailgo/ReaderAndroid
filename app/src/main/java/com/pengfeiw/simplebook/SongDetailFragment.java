@@ -17,16 +17,11 @@ import com.pengfeiw.simplebook.library.SongContainer;
  * on handsets.
  */
 public class SongDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+
     public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private SongContainer.Song mItem;
+    private SongContainer songContainer = null;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -38,12 +33,13 @@ public class SongDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        songContainer = SongContainer.getInstance(this.getActivity().getApplicationContext());
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = SongContainer.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = songContainer.getSongById(getArguments().getString(ARG_ITEM_ID));
         }
     }
 
@@ -54,7 +50,7 @@ public class SongDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.song_detail)).setText(mItem.getContent(this.getActivity()));
+            ((TextView) rootView.findViewById(R.id.song_detail)).setText(mItem.getContent());
         }
 
         return rootView;
