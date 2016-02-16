@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Song List</string>
+    <string name="title_song_detail">Song Detail</string>
+
+    <string name="song_source_file">SongsThai.txt</string>
+    <string name="title_prompt">ชื่อเพลง:</string>
+    <string name="lang_en_title">en</string>
+    <string name="lang_th_title">th</string>
+    <string name="main_label">แผ่นป้าย</string>
+</resources>

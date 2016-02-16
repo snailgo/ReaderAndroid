@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
+import com.pengfeiw.simplebook.R;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +27,7 @@ public class SongContainer {
 
     //Resource for container self.
     private static SongContainer instance=null;
-    private Context appContext = null;
+    private static Context appContext = null;
 
 
     //Resource for accessing song.
@@ -42,10 +44,10 @@ public class SongContainer {
      */
     private void init() {
         Log.i(TAG, "Initialize song container.");
-        String songPromptString = "SONG TITLE:";
+        String songPromptString = appContext.getResources().getString(R.string.title_prompt);
         InputStream songIn = null;
         try {
-            songIn = appContext.getAssets().open("Songs.txt", AssetManager.ACCESS_STREAMING);
+            songIn = appContext.getAssets().open(appContext.getResources().getString(R.string.song_source_file), AssetManager.ACCESS_STREAMING);
             BufferedReader fileReader = new BufferedReader((new InputStreamReader(songIn)));
             String line;
             String title = "";
@@ -97,6 +99,13 @@ public class SongContainer {
         if (instance == null) {
             instance = new SongContainer(appContext);
         }
+        return instance;
+    }
+
+    public static SongContainer reload(Context appContext) {
+        ITEMS.clear();
+        ITEM_MAP.clear();
+        instance = new SongContainer(appContext);
         return instance;
     }
 

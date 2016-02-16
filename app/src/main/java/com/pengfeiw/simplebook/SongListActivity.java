@@ -1,26 +1,19 @@
 package com.pengfeiw.simplebook;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.pengfeiw.simplebook.library.SongContainer;
+
+import java.util.Locale;
 
 
-/**
- * An activity representing a list of Song. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link SongDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- * <p/>
- * The activity makes heavy use of fragments. The list of items is a
- * {@link SongListFragment} and the item details
- * (if present) is a {@link SongDetailFragment}.
- * <p/>
- * This activity also implements the required
- * {@link SongListFragment.Callbacks} interface
- * to listen for item selections.
- */
 public class SongListActivity extends ActionBarActivity
         implements SongListFragment.Callbacks {
     private static String TAG = "SongListActivity";
@@ -29,6 +22,7 @@ public class SongListActivity extends ActionBarActivity
      * device.
      */
     private boolean mTwoPane;
+    private Locale langLocal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +45,6 @@ public class SongListActivity extends ActionBarActivity
 
     }
 
-    /**
-     * Callback method from {@link SongListFragment.Callbacks}
-     * indicating that the item with the given ID was selected.
-     */
     @Override
     public void onItemSelected(String id) {
         if (mTwoPane) {
@@ -77,4 +67,55 @@ public class SongListActivity extends ActionBarActivity
             startActivity(detailIntent);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Configuration langConfig;
+        Toast langToast;
+        Intent refresh;
+        switch (item.getItemId()) {
+            case R.id.lang_en:
+                if (getApplicationContext().getResources().getConfiguration().locale.getLanguage() == "en") {
+                    break;
+                }
+                langLocal = new Locale("en");
+                langConfig = new Configuration();
+                langConfig.locale = langLocal;
+                Locale.setDefault(langLocal);
+                getApplicationContext().getResources().updateConfiguration(langConfig, getResources().getDisplayMetrics());
+                SongContainer.reload(getBaseContext());
+                langToast = Toast.makeText(getBaseContext(), "Change to en", Toast.LENGTH_LONG);
+                langToast.show();
+                refresh = new Intent(this, SongListActivity.class);
+                startActivity(refresh);
+                finish();
+                break;
+            case R.id.lang_th:
+                if (getApplicationContext().getResources().getConfiguration().locale.getLanguage() == "th") {
+                    break;
+                }
+                langLocal = new Locale("th");
+                langConfig = new Configuration();
+                langConfig.locale = langLocal;
+                Locale.setDefault(langLocal);
+                getApplicationContext().getResources().updateConfiguration(langConfig, getResources().getDisplayMetrics());
+                langToast = Toast.makeText(getBaseContext(), "Change to th", Toast.LENGTH_LONG);
+                SongContainer.reload(getBaseContext());
+                refresh = new Intent(this, SongListActivity.class);
+                startActivity(refresh);
+                finish();
+                langToast.show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

@@ -1,4 +1,23 @@
 <resources>
+    <!-- App-->
     <string name="app_name">Song List</string>
     <string name="title_song_detail">Song Detail</string>
+
+    <!--Song list activity-->
+    <string name="song_source_file">Songs.txt</string>
+    <string name="title_prompt">SONG TITLE:</string>
+    <string name="lang_en_title">en</string>
+    <string name="lang_th_title">th</string>
+    <string name="main_label">Main Label</string>
+
+    <!--Preferences -->
+    <string-array name="language_key">
+        <item>English</item>
+        <item>Thai</item>
+    </string-array>
+
+    <string-array name="language_value">
+        <item>"en"</item>
+        <item>"th"</item>
+    </string-array>
 </resources>
