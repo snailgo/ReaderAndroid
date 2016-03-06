@@ -13,6 +13,6 @@
     android:padding="16dp"
     android:textSize="14dp"
     android:textIsSelectable="true"
-    android:gravity="center"
+    android:gravity="left"
     tools:context=".SongDetailFragment" />
 </ScrollView>

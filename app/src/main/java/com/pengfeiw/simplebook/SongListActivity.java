@@ -114,6 +114,22 @@ public class SongListActivity extends ActionBarActivity
                 finish();
                 langToast.show();
                 break;
+            case R.id.lang_my:
+                if (getApplicationContext().getResources().getConfiguration().locale.getLanguage() == "my") {
+                    break;
+                }
+                langLocal = new Locale("my");
+                langConfig = new Configuration();
+                langConfig.locale = langLocal;
+                Locale.setDefault(langLocal);
+                getApplicationContext().getResources().updateConfiguration(langConfig, getResources().getDisplayMetrics());
+                langToast = Toast.makeText(getBaseContext(), "Change to my", Toast.LENGTH_LONG);
+                SongContainer.reload(getBaseContext());
+                refresh = new Intent(this, SongListActivity.class);
+                startActivity(refresh);
+                finish();
+                langToast.show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

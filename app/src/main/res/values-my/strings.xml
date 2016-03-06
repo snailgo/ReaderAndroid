@@ -2,10 +2,10 @@
     <string name="app_name">Song List</string>
     <string name="title_song_detail">Song Detail</string>
 
-    <string name="song_source_file">SongsThai.txt</string>
-    <string name="title_prompt">ชื่อเพลง:</string>
+    <string name="song_source_file">SongsMyanmar.txt</string>
+    <string name="title_prompt">သီချင်းခေါင်းစဉ်ကို:</string>
     <string name="lang_en_title">en</string>
     <string name="lang_th_title">th</string>
     <string name="lang_my_title">my</string>
-    <string name="main_label">แผ่นป้าย</string>
+    <string name="main_label">အဓိကတံဆိပ်</string>
 </resources>

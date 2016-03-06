@@ -8,6 +8,7 @@
     <string name="title_prompt">SONG TITLE:</string>
     <string name="lang_en_title">en</string>
     <string name="lang_th_title">th</string>
+    <string name="lang_my_title">my</string>
     <string name="main_label">Main Label</string>
 
     <!--Preferences -->
