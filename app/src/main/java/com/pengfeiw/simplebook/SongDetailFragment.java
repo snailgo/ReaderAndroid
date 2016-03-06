@@ -1,5 +1,6 @@
 package com.pengfeiw.simplebook;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -51,7 +52,9 @@ public class SongDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
+            Typeface tf_mm3 = Typeface.createFromAsset(this.getActivity().getAssets(), "fonts/zawgyi.ttf");
             ((TextView) rootView.findViewById(R.id.song_detail)).setText(mItem.getContent());
+            ((TextView) rootView.findViewById(R.id.song_detail)).setTypeface(tf_mm3);
         }
 
         return rootView;
