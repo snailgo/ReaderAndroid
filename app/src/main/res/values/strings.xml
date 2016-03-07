@@ -10,6 +10,7 @@
     <string name="lang_th_title">th</string>
     <string name="lang_my_title">my</string>
     <string name="main_label">Main Label</string>
+    <string name="detail_label">detail Label</string>
 
     <!--Preferences -->
     <string-array name="language_key">

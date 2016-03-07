@@ -41,7 +41,6 @@ public class SongDetailFragment extends Fragment {
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
             mItem = songContainer.getSongById(getArguments().getString(ARG_ITEM_ID));
-            this.getActivity().setTitle(mItem.title);
         }
     }
 
